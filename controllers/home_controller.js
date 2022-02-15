@@ -1,3 +1,5 @@
 module.exports.home = function(request, response){
-    return response.end('<h1> express is up for todo</h1>');
+    return response.render('home', {
+        title: "todo home"
+    });
 }
