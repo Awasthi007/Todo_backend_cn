@@ -3,8 +3,9 @@ const db = require('./config/mongoose');
 const app = express();
 
 const port = 8000;
+app.use(express.urlencoded()) 
 // use express router
-
+app.use(express.static('./assets'));
 
 //setup the view engine
 

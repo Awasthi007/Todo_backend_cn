@@ -1,10 +1,168 @@
 <html>
-    <head>
-        <title>
 
-        </title>
-    </head>
-    <body>
-        <h1>todoooooo</h1>
-    </body>
+<head>
+    <title>
+
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/184f032213.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+
+<body>
+    <div id='heading'>
+        <h1>ToDo List App</h1>
+    </div>
+    <div id='container'>
+        <form action="/add-task" method="post">
+
+
+
+            <div class='atm'>
+                <label for='task-title' class="form-label mb-2">TITLE</label>
+                <input type='text' id='task-title' name='title' class='form-control' placeholder="Enter the title"
+                    required>
+            </div>
+
+
+            <div class='atm'>
+                <label for="description" class="form-label  mb-2">DESCRIPTION</label>
+                <input type="text" id='description' name="desc" class='form-control' placeholder="Describe the task"
+                    required>
+            </div>
+
+            <div class='flexer'>
+                <div class=" atm category-atm">
+                    <label for="category">CHOOSE CATEGORY</label>
+                    <select name="categ" id="category" class="custom-select">
+                        <option value="Personal">Personal</option>
+                        <option value="Professional">Professional</option>
+                        <option value="Academics">Academics</option>
+                        <option value="Social">Social</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="due-date-atm">
+                    <label for="due-date">
+                        DUE-DATE
+                    </label>
+                    <input type="date" name="duedate" required>
+                </div>
+            </div>
+
+
+
+            <div class="submit-button">
+
+                <button type="submit" class="btn btn-success btn-lg">
+                    <i class="fas fa-plus"></i> Add Task</button>
+
+            </div>
+
+
+
+            
+        </form>
+
+        <form action="/delete-task" method="get" class="aform">
+            <div class='delete-button'>
+                <button class="btn btn-danger btn-lg" type="submit">
+                    <i class="fas fa-trash-alt"></i> Delete Task </button>
+            </div>
+    </div>
+
+    <!-- here the form part ended-->
+
+    <!-- here onwards code contains the rendering part of the list on to the screen -->
+
+    <!-- this will contain the checkbox and body and badge part-->
+     
+
+
+    <div class='details'>
+        <!-- to check if out array is non-empty-->
+        <div class="blur-container">
+            <div class="box">
+                <% if(ourList.length !=0){ %>
+
+                    <% for(i of ourList) { %>
+                        <!--to iterate all over the tasks-->
+    
+                        <div class='atm task-atm'>
+                            <div class='tick-box'>
+                                <input type='checkbox' for='detail-title' class='select-task' id='checkbox'
+                                    name="<%= i._id %>">
+                            </div>
+    
+                            <div class='atm-body task-body'>
+                                <h5 id='detail-title' class="atm-title">
+                                    <%= i.title %>
+                                </h5>
+                                <p  id='alli'>
+                                    <%= i.desc %>
+                                </p>
+                                <p ><i class="far fa-calendar-alt"></i>
+                                    <%= i.duedate %>
+                                </p>
+                            </div>
+    
+                            <div class='tag-box'>
+                                <!--    FROM HERE IT WILL CONTAIN THE BADGES USING BOOT-STRAP-->
+                                <% if(i.categ=='Personal' ) {%>
+                                    <h4><span class="badge bg-primary">
+                                            <%= i.categ %>
+                                        </span></h4>
+                                    <% }%>
+    
+                                        <% if(i.categ=='Professional' ) {%>
+                                            <h4><span class="badge bg-success">
+                                                    <%= i.categ %>
+                                                </span></h4>
+                                            <% }%>
+    
+                                                <% if(i.categ=='Academics' ) {%>
+                                                    <h4><span class="badge bg-info">
+                                                            <%= i.categ %>
+                                                        </span></h4>
+                                                    <% }%>
+    
+                                                        <% if(i.categ=='Social' ) {%>
+                                                            <h4><span class="badge bg-dark">
+                                                                    <%= i.categ %>
+                                                                </span></h4>
+                                                            <% }%>
+    
+                                                                <% if(i.categ=='Other' ) {%>
+                                                                    <h4><span class="badge bg-success">
+                                                                            <%= i.categ %>
+                                                                        </span></h4>
+                                                                    <% }%>
+    
+    
+    
+    
+                            </div>
+    
+                        </div>
+    
+                        <% } %>
+    
+                            <% } %>
+    
+                                <!-- if task list is empty then no task added message will be printed -->
+                                <% if( ourList.length==0 ) {%>
+                                    <h1 style="text-align: center;">No task Added Yet!</h1>
+    
+                                    <% } %>
+            </div>
+          </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
